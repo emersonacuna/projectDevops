@@ -1,8 +1,5 @@
 pipeline {
-    agent {
-        label 'principal'
-    }
-
+    agent any
     environment {
         ANSIBLE_PLAYBOOK = '/home/emerson/ansible/docker/install-docker.yaml' // Nombre del playbook
         //INVENTORY_FILE = 'hosts' // Archivo de inventario
@@ -26,7 +23,7 @@ pipeline {
             steps {
                 script {
                     // Ejecutar el playbook de Ansible
-                    sh "ansible-playbook -i ${INVENTORY_FILE} ${ANSIBLE_PLAYBOOK}"
+                    sh "ansible-playbook ${ANSIBLE_PLAYBOOK}"
                 }
             }
         }
