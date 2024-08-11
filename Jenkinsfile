@@ -10,10 +10,11 @@ pipeline {
             steps {
                 script {
                     // Verificar si Ansible está instalado
-                    def ansibleInstalled = sh(script: 'which ansible', returnStatus: true) == 0
-                    if (!ansibleInstalled) {
-                        echo 'Instalando Ansible...'
-                        sh 'pip install ansible'
+                    // def ansibleInstalled = sh(script: 'which ansible', returnStatus: true) == 0
+                    // if (!ansibleInstalled) {
+                        // echo 'Instalando Ansible...'
+                        // sh 'pip install ansible'
+                    echo "Preparando entorno"
                     }
                 }
             }
