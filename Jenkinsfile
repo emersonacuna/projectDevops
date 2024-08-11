@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'principal' }
+    agent { label 'master' }
     environment {
         ANSIBLE_PLAYBOOK = '/home/emerson/ansible/docker/install-docker.yaml' // Nombre del playbook
         //INVENTORY_FILE = 'hosts' // Archivo de inventario
