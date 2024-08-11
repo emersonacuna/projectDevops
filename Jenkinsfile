@@ -15,6 +15,8 @@ pipeline {
                         // echo 'Instalando Ansible...'
                         // sh 'pip install ansible'
                     echo "Preparando entorno"
+                    sh "pwd"
+                    sh "hostnamectl"
                     // }
                 }
             }
