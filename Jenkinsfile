@@ -15,7 +15,7 @@ pipeline {
                         // echo 'Instalando Ansible...'
                         // sh 'pip install ansible'
                     echo "Preparando entorno"
-                    }
+                    // }
                 }
             }
         }
