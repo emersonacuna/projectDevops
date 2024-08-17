@@ -35,11 +35,9 @@ pipeline {
         stage('Build image and run docker') {
             steps {
                 script {
-                    dir('projectDevops') { 
-                        sh 'pwd && ls -l'
-                        sh 'docker build . -t myapp'
-                    }
-                    sh 'docker run -d --name myweb myapp'
+                    sh 'pwd && ls -l'
+                    //sh 'docker build . -t myapp'
+                    //sh 'docker run -d --name myweb myapp'
                 }
             }
         }
