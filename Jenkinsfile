@@ -27,7 +27,8 @@ pipeline {
 
         stage('Git clone') {
             steps {
-                git url: 'https://github.com/emersonacuna/projectDevops.git'
+                // git url: 'https://github.com/emersonacuna/projectDevops.git'
+                git branch: 'main', url: 'https://github.com/emersonacuna/projectDevops.git'
             }
         }
 
