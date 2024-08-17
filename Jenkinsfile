@@ -36,8 +36,8 @@ pipeline {
             steps {
                 script {
                     sh 'pwd && ls -l'
-                    //sh 'docker build . -t myapp'
-                    //sh 'docker run -d --name myweb myapp'
+                    sh 'docker build . -t myapp'
+                    sh 'docker run -d --name myweb myapp'
                 }
             }
         }
