@@ -9,15 +9,9 @@ pipeline {
         stage('Preparar Entorno') {
             steps {
                 script {
-                    // Verificar si Ansible está instalado
-                    // def ansibleInstalled = sh(script: 'which ansible', returnStatus: true) == 0
-                    // if (!ansibleInstalled) {
-                        // echo 'Instalando Ansible...'
-                        // sh 'pip install ansible'
                     echo "Preparando entorno"
                     sh "pwd"
                     sh "hostnamectl"
-                    // }
                 }
             }
         }
@@ -30,12 +24,31 @@ pipeline {
                 }
             }
         }
+
+        stage('Git clone') {
+            steps {
+                git url: 'https://github.com/emersonacuna/projectDevops.git'
+            }
+        }
+
+        stage('Build image and run docker') {
+            steps {
+                script {
+                    dir('projectDevops') { 
+                        sh 'docker build . -t myapp'
+                    }
+                    sh 'docker run -d --name myweb myapp'
+                }
+            }
+        }
     }
 
     post {
         always {
             echo 'Limpieza y finalización del pipeline.'
-            // Aquí puedes agregar pasos para limpiar recursos o notificaciones, si es necesario.
+            script {
+                sh 'rm -rf projectDevops' // Elimina el directorio clonado
+            }
         }
     }
 }
