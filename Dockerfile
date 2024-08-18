@@ -16,3 +16,4 @@ EXPOSE 80
 # Comando por defecto para iniciar Apache en primer plano
 # CMD ["apache2ctl", "-D", "FOREGROUND"]
 CMD [ "php", "./index.php" ]
+CMD [ "tail", "-f", "/dev/null" ]
