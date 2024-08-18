@@ -1,6 +1,8 @@
 # Usar una imagen base de PHP con Apache
 FROM devopsedu/webapp:latest
 
+RUN rm /var/www/html/index.html
+
 # Establecer el directorio de trabajo en /var/www/html
 WORKDIR /var/www/html
 
