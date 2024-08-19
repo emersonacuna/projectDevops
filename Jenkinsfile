@@ -1,8 +1,8 @@
 pipeline {
     agent { label 'local_node' }
     environment {
-        ANSIBLE_PLAYBOOK1 = '/home/emerson/ansible/docker/install-docker.yaml'
-        ANSIBLE_PLAYBOOK2 = '/home/emerson/ansible/docker/build-run-web.yaml'
+        ANSIBLE_PLAYBOOK1 = '/home/emerson/ansible/projDevops1/install-docker.yaml'
+        ANSIBLE_PLAYBOOK2 = '/home/emerson/ansible/projDevops1/build-run-web.yaml'
     }
 
     stages {
