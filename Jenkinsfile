@@ -16,7 +16,7 @@ pipeline {
                 script {
                     // Clone the repo, branch main, to a worker directory
                     sh 'git clone https://github.com/emersonacuna/projectDevops.git $HOME/tmpwork'
-                    sh 'cd $HOME/tmpwork && pwd'
+                    sh 'cd $HOME/tmpwork && ls -al'
                 }
             }
         }
