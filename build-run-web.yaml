@@ -24,3 +24,9 @@
     - name: Running docker container
       ansible.builtin.command:
         cmd: docker run -d -p 9000:80 --name myweb myapp
+
+    - name: Delete directory $HOME/tmpworker
+      file:
+        path: "{{ lookup('env', 'HOME') }}/tmpworker"
+        state: absent
+        
