@@ -1,6 +1,6 @@
 # Usar una imagen base de PHP con Apache
-FROM devopsedu/webapp:latest
-# FROM php:8.2-apache
+# FROM devopsedu/webapp:latest
+FROM php:8.2-apache
 
 # Establecer el directorio de trabajo en /var/www/html
 # WORKDIR /var/www/html
@@ -15,5 +15,5 @@ RUN chown -R www-data:www-data /var/www/html \
 EXPOSE 80
 
 # Comando por defecto para iniciar Apache en primer plano
-CMD ["apache2ctl", "-D", "FOREGROUND"]
-# CMD ["apache2-foreground"]
+# CMD ["apache2ctl", "-D", "FOREGROUND"]
+CMD ["apache2-foreground"]
