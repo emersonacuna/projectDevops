@@ -37,6 +37,7 @@ pipeline {
                     // Run ansible playbooks
                     echo "Building the apache server"
                     sh 'cd $HOME/tmpwork'
+                    sh 'ls -al'
                     sh "ansible-playbook build-run-web.yaml"
                 }
             }
