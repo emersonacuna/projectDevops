@@ -1,53 +1,48 @@
 pipeline {
     agent { label 'local_node' }
     environment {
-        ANSIBLE_PLAYBOOK = '/home/emerson/ansible/docker/install-docker.yaml' // Nombre del playbook
-        //INVENTORY_FILE = 'hosts' // Archivo de inventario
+        ANSIBLE_PLAYBOOK1 = '/home/emerson/ansible/docker/install-docker.yaml'
+        ANSIBLE_PLAYBOOK2 = '/home/emerson/ansible/docker/build-run-web.yaml'
     }
 
     stages {
-        stage('Preparar Entorno') {
+        stage('Preparing environment') {
             steps {
                 script {
-                    echo "Preparando entorno"
+                    echo "Preparing environmet"
                     sh "pwd"
                     sh "hostnamectl"
                 }
             }
         }
 
-        stage('Ejecutar Playbook de Ansible') {
+        stage('Installing docker') {
             steps {
                 script {
-                    // Ejecutar el playbook de Ansible
-                    sh "ansible-playbook ${ANSIBLE_PLAYBOOK}"
+                    // Run ansible playbooks
+                    echo "Running ansible playbooks for installing docker"
+                    sh "ansible-playbook ${ANSIBLE_PLAYBOOK1}"
                 }
             }
         }
 
-        stage('Git clone') {
-            steps {
-                // git url: 'https://github.com/emersonacuna/projectDevops.git'
-                git branch: 'main', url: 'https://github.com/emersonacuna/projectDevops.git'
-            }
-        }
-
-        stage('Build image and run docker') {
+        stage('Deploying Apache server') {
             steps {
                 script {
-                    sh 'pwd && ls -l'
-                    sh 'docker build . -t myapp'
-                    sh 'docker run -d --name myweb myapp'
+                    // Run ansible playbooks
+                    echo "Building the apache server"
+                    sh "ansible-playbook ${ANSIBLE_PLAYBOOK2}"
                 }
             }
         }
+
     }
 
     post {
         always {
-            echo 'Limpieza y finalización del pipeline.'
+            echo 'Cleaning and terminating the pipeline'
             script {
-                sh 'rm -rf projectDevops' // Elimina el directorio clonado
+                echo "Cleaning completed"
             }
         }
     }
