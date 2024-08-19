@@ -43,6 +43,22 @@ pipeline {
             }
         }
 
+        stage('Check and remove container if not running') {
+            steps {
+                script {
+                    def containerName = 'myweb' 
+                    def status = sh(script: "docker ps -q -f name=${containerName}", returnStdout: true).trim()
+
+                    if (status) {
+                        echo "Container ${containerName} is running"
+                    } else {
+                        echo "Container ${containerName} is not running. Deleting it ..."
+                        sh "docker rm ${containerName}"
+                    }
+                }
+            }
+        }
+
     }
     post {
         always {
