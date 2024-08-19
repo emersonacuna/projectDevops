@@ -1,0 +1,26 @@
+---
+- name: Clone the git, build and run the php app
+  hosts: all
+  remote_user: slave
+  become: yes
+  tasks:
+    - name: Create a work directory if not exists
+      ansible.builtin.file:
+        path: "{{ ansible_env.HOME }}/tmpworker"
+        state: directory
+
+    - name: Clone the repo
+      ansible.builtin.git:
+        repo: 'https://github.com/emersonacuna/projectDevops.git'
+        dest: "{{ ansible_env.HOME }}/tmpworker"
+        version: main
+        update: yes
+
+    - name: Build docker image
+      ansible.builtin.command:
+        cmd: docker build . -t myapp
+        chdir: "{{ ansible_env.HOME }}/tmpworker"
+
+    - name: Running docker container
+      ansible.builtin.command:
+        cmd: docker run -d -p 9000:80 --name myweb myapp
