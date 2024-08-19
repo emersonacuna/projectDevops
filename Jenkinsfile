@@ -31,17 +31,17 @@ pipeline {
                 }
             }
         }
-/*
+
         stage('Deploying Apache server') {
             steps {
                 script {
                     // Run ansible playbooks
                     echo "Building the apache server"
-                    sh "ansible-playbook ${ANSIBLE_PLAYBOOK2}"
+                    sh "ansible-playbook build-run-web.yaml"
                 }
             }
         }
-*/
+
     }
 
     post {
