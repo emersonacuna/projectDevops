@@ -6,7 +6,6 @@ pipeline {
             steps {
                 script {
                     sh 'mkdir -p $HOME/tmpwork'
-                    sh 'cd $HOME/tmpwork && pwd'
                 }
             }
         }
