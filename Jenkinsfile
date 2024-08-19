@@ -14,13 +14,9 @@ pipeline {
         stage('Clone repo, revision main') {
             steps {
                 script {
-                    // Clone the repo, branch main
-                    dir('$HOME/tmpwork') {
-                        git branch: 'main',
-                            url: 'https://github.com/emersonacuna/projectDevops.git'
-                        sh 'pwd'
-                        sh 'ls -al'
-                    }
+                    // Clone the repo, branch main, to a worker directory
+                    sh 'git clone https://github.com/emersonacuna/projectDevops.git $HOME/tmpwork'
+                    sh 'cd $HOME/tmpwork && pwd'
                 }
             }
         }
