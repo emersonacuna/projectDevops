@@ -43,15 +43,6 @@ pipeline {
             }
         }
 
-        stage('Check and remove container if not running') {
-            steps {
-                script {
-                    sh 'cd $HOME/tmpwork'
-                    sh 'ls -al'
-                    sh "ansible-playbook remove-container.yaml"
-                }
-            }
-        }
 
     }
     post {
