@@ -15,5 +15,5 @@ RUN chown -R www-data:www-data /var/www/html \
 EXPOSE 80
 
 # Comando por defecto para iniciar Apache en primer plano
-# CMD ["apache2ctl", "-D", "FOREGROUND"]
-CMD ["apache2-foreground"]
+CMD ["apache2ctl", "-D", "FOREGROUND"]
+# CMD ["apache2-foreground"]
