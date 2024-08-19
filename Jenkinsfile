@@ -15,7 +15,7 @@ pipeline {
             steps {
                 script {
                     // Clone the repo, branch main
-                    dir('mi-directorio-especifico') {
+                    dir('$HOME/tmpwork') {
                         git branch: 'main',
                             url: 'https://github.com/emersonacuna/projectDevops.git'
                         sh 'pwd'
