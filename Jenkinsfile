@@ -44,9 +44,8 @@ pipeline {
                 }
             }
         }
-
-    }
 */
+    }
     post {
         always {
             echo 'Cleaning and terminating the pipeline'
