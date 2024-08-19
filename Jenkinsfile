@@ -2,12 +2,11 @@ pipeline {
     agent { label 'local_node' }
 
     stages {
-        stage('Preparing environment') {
+        stage('Creating work directory') {
             steps {
                 script {
-                    echo "Preparing environmet"
-                    sh "pwd"
-                    sh "hostnamectl"
+                    sh 'mkdir -p $HOME/tmpwork'
+                    sh 'cd $HOME/tmpwork && pwd'
                 }
             }
         }
@@ -16,12 +15,16 @@ pipeline {
             steps {
                 script {
                     // Clone the repo, branch main
-                    git branch: 'main',
-                        url: 'https://github.com/emersonacuna/projectDevops.git'
+                    dir('mi-directorio-especifico') {
+                        git branch: 'main',
+                            url: 'https://github.com/emersonacuna/projectDevops.git'
+                        sh 'pwd'
+                        sh 'ls -al'
+                    }
                 }
             }
         }
-      
+/*      
         stage('Installing docker') {
             steps {
                 script {
@@ -43,7 +46,7 @@ pipeline {
         }
 
     }
-
+*/
     post {
         always {
             echo 'Cleaning and terminating the pipeline'
