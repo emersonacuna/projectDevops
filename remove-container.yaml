@@ -1,0 +1,22 @@
+---
+- name: Clone the git, build and run the php app
+  hosts: all
+  remote_user: slave
+  tasks:
+    - name: Check if container is running
+      docker_container_info:
+        name: myweb 
+      register: container_info
+      ignore_errors: yes
+
+    - name: Show container status
+      debug:
+        msg: >
+          The container myweb {{ 'is running' if (container_info.containers[0].State.Running | default(False)) else 'is not running' }}
+
+    - name: Delete  container if it is not running
+      docker_container:
+        name: myweb
+        state: absent
+      when: container_info.containers[0].State.Running == False
+      ignore_errors: yes
