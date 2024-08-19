@@ -2,7 +2,7 @@
 - name: Clone the git, build and run the php app
   hosts: all
   remote_user: slave
-  become: yes
+#  become: yes
   tasks:
 #    - name: Create a work directory if not exists
 #      ansible.builtin.file:
