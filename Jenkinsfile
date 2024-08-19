@@ -20,12 +20,13 @@ pipeline {
                 }
             }
         }
-/*      
+     
         stage('Installing docker') {
             steps {
                 script {
                     // Run ansible playbooks
                     echo "Running ansible playbooks for installing docker"
+                    sh 'cd $HOME/tmpwork'
                     sh 'ansible-playbook install-docker.yaml'
                 }
             }
@@ -36,17 +37,19 @@ pipeline {
                 script {
                     // Run ansible playbooks
                     echo "Building the apache server"
+                    sh 'cd $HOME/tmpwork'
                     sh "ansible-playbook build-run-web.yaml"
                 }
             }
         }
-*/
+
     }
     post {
         always {
             echo 'Cleaning and terminating the pipeline'
             script {
-                echo "Cleaning completed"
+                sh 'sudo rm -rf $HOME/tmpwork'
+                echo "Temporal directory deleted"
             }
         }
     }
